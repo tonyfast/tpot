@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>http://rasbt.github.io/tpot/</loc>
+     <lastmod>2015-12-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>http://rasbt.github.io/tpot/examples/Using_TPOT_via_the_command_line/</loc>
+     <lastmod>2015-12-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://rasbt.github.io/tpot/examples/Using_TPOT_via_code/</loc>
+     <lastmod>2015-12-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://rasbt.github.io/tpot/examples/MNIST_Example/</loc>
+     <lastmod>2015-12-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+    <url>
+     <loc>http://rasbt.github.io/tpot/changelog/</loc>
+     <lastmod>2015-12-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://rasbt.github.io/tpot/installing/</loc>
+     <lastmod>2015-12-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://rasbt.github.io/tpot/contributing/</loc>
+     <lastmod>2015-12-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+</urlset>
