@@ -1,146 +1,339 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="TPOT is a Python tool that automatically creates and optimizes Machine Learning pipelines using genetic programming.">
-        <meta name="author" content="Sebastian Raschka">
-        <link rel="canonical" href="http://rasbt.github.io/tpot/">
-        <link rel="shortcut icon" href="./img/favicon.ico">
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TPOT is a Python tool that automatically creates and optimizes Machine Learning pipelines using genetic programming.">
+  <meta name="author" content="Sebastian Raschka">
+  
+  <title>TPOT</title>
+  
 
-	<title>TPOT</title>
+  <link rel="shortcut icon" href="./img/favicon.ico">
 
-        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/highlight.css">
-        <link href="./css/base.css" rel="stylesheet">
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
 
-        
-    </head>
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "None";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script src="./js/theme.js"></script> 
 
-    <body>
+  
+</head>
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+<body class="wy-body-for-nav" role="document">
 
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+  <div class="wy-grid-for-nav">
 
-            <!-- Main title -->
-            <a class="navbar-brand" href=".">TPOT</a>
-        </div>
-
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-            
-            
-                <li class="active">
-                    <a href=".">Home</a>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="examples/Using_TPOT_via_the_command_line/">Using TPOT via the command line</a>
-                        </li>
-                    
-                        <li >
-                            <a href="examples/Using_TPOT_via_code/">Using TPOT via code</a>
-                        </li>
-                    
-                        <li >
-                            <a href="examples/MNIST_Example/">MNIST Example</a>
-                        </li>
-                    
-                        <li >
-                            <a href="examples/Custom_Scoring_Functions/">Custom Scoring Functions</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="changelog/">Changelog</a>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="installing/">Installation</a>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="contributing/">Contributing</a>
-                </li>
-            
-            
-            </ul>
-
-            <!-- Search, Navigation and Repo links -->
-            <ul class="nav navbar-nav navbar-right">
-                <li class="disabled">
-                    <a rel="next" >
-                        <i class="fa fa-arrow-left"></i> Previous
-                    </a>
-                </li>
-                <li >
-                    <a rel="prev" href="examples/Using_TPOT_via_the_command_line/">
-                        Next <i class="fa fa-arrow-right"></i>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="https://github.com/rhiever/tpot">
-                        
-                            <i class="fa fa-github"></i>
-                        
-                        GitHub
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-    </div>
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> TPOT</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
 </div>
+      </div>
 
-        <div class="container">
-            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-    
-        <li class="main active"><a href="#tree-based-pipeline-optimization-tool-tpot">Tree-based Pipeline Optimization Tool (TPOT)</a></li>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
         
-            <li><a href="#license">License</a></li>
+            <ul>
+            
+                <li class="toctree-l3"><a href="#tree-based-pipeline-optimization-tool-tpot">Tree-based Pipeline Optimization Tool (TPOT)</a></li>
+                
+                    <li><a class="toctree-l4" href="#license">License</a></li>
+                
+            
+            </ul>
         
-    
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Examples</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="examples/Using_TPOT_via_the_command_line/">Using TPOT via the command line</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="examples/Using_TPOT_via_code/">Using TPOT via code</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="examples/MNIST_Example/">MNIST Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="examples/IRIS_Example/">IRIS Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="examples/Custom_Scoring_Functions/">Custom Scoring Functions</a>
+        
+    </li>
+
+        
     </ul>
-</div></div>
-            <div class="col-md-9" role="main">
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="changelog/">Changelog</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="installing/">Installation</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Reference</span></li>
 
-<h1 id="tree-based-pipeline-optimization-tool-tpot">Tree-based Pipeline Optimization Tool (TPOT)</h1>
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="ref_index/">Index</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/TPOT/">TPOT Object</a>
+        
+    </li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>Pipeline Operators</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>Models</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/models/classifiers/tree/DecisionTreeClassifier/">DecisionTreeClassifier</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/models/classifiers/ensemble/RandomForestClassifier/">RandomForestClassifier</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/models/classifiers/ensemble/GradientBoostingClassifier/">GradientBoostingClassifier</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/models/classifiers/svm/SVC/">SVC</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/models/classifiers/nearest_neighbors/kNeighborsClassifier/">kNeighborsClassifier</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/models/classifiers/linear_model/LogisticRegression/">LogisticRegression</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>Pre-Processing</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/preprocessing/scaling/StandardScaler/">StandardScaler</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/preprocessing/scaling/RobustScaler/">RobustScaler</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/preprocessing/PolynomialFeatures/">PolynomialFeatures</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>Feature Selection</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/feature_selection/VarianceThreshold/">VarianceThreshold</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/feature_selection/SelectKBest/">SelectKBest</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/feature_selection/SelectPercentile/">SelectPercentile</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/feature_selection/RFE/">RFE</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>Decomposition</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="reference/pipeline_operators/decomposition/RandomizedPCA/">RandomizedPCA</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="contributing/">Contributing</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">TPOT</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/rhiever/tpot" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="tree-based-pipeline-optimization-tool-tpot">Tree-based Pipeline Optimization Tool (TPOT)</h1>
+<p><center>
+<img src="https://raw.githubusercontent.com/rhiever/tpot/master/images/tpot-demo.gif" width=800 alt="TPOT Demo" />
+</center></p>
 <p>Consider TPOT your <strong>Data Science Assistant</strong>. TPOT is a Python tool that automatically creates and optimizes Machine Learning pipelines using genetic programming.</p>
 <p>TPOT will automate the most tedious part of Machine Learning by intelligently exploring thousands of possible pipelines to find the best one for your data.</p>
 <p><center>
@@ -155,20 +348,55 @@
 <p>TPOT is built on top of scikit-learn, so all of the code it generates should look familiar... if you're familiar with scikit-learn, anyway.</p>
 <p><strong>TPOT is still under active development</strong> and we encourage you to check back on this repository regularly for updates.</p>
 <h2 id="license">License</h2>
-<p>Please see the <a href="https://github.com/rhiever/tpot/blob/master/LICENSE">repository license</a> for the licensing and usage information for TPOT.</p></div>
+<p>Please see the <a href="https://github.com/rhiever/tpot/blob/master/LICENSE">repository license</a> for the licensing and usage information for TPOT.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples/Using_TPOT_via_the_command_line/" class="btn btn-neutral float-right" title="Using TPOT via the command line">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2015 <a href="http://randalolson.com">Randal Olson</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
         </div>
+      </div>
 
-        <footer class="col-md-12">
-            <hr>
-            
-                <center>Copyright &copy; 2015 <a href="http://randalolson.com">Randal Olson</a></center>
-            
-            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
-        </footer>
+    </section>
 
-        <script src="./js/jquery-1.10.2.min.js"></script>
-        <script src="./js/bootstrap-3.0.3.min.js"></script>
-        <script src="./js/highlight.pack.js"></script>
-        <script src="./js/base.js"></script>
-    </body>
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/rhiever/tpot" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="examples/Using_TPOT_via_the_command_line/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
 </html>
+
+<!--
+MkDocs version : 0.15.2
+Build Date UTC : 2016-02-09 20:58:40.989601
+-->

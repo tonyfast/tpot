@@ -8,7 +8,7 @@
   
   <meta name="author" content="Sebastian Raschka">
   
-  <title>Custom Scoring Functions - TPOT</title>
+  <title>IRIS Example - TPOT</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Custom Scoring Functions";
-    var mkdocs_page_input_path = "examples/Custom_Scoring_Functions.md";
-    var mkdocs_page_url = "/examples/Custom_Scoring_Functions/";
+    var mkdocs_page_name = "IRIS Example";
+    var mkdocs_page_input_path = "examples/IRIS_Example.md";
+    var mkdocs_page_url = "/examples/IRIS_Example/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -88,22 +88,22 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../IRIS_Example/">IRIS Example</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">IRIS Example</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#iris-example">IRIS Example</a></li>
+                
+            
+            </ul>
         
     </li>
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Custom Scoring Functions</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#custom-scoring-functions">Custom Scoring Functions</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../Custom_Scoring_Functions/">Custom Scoring Functions</a>
         
     </li>
 
@@ -318,7 +318,7 @@
         
       
     
-    <li>Custom Scoring Functions</li>
+    <li>IRIS Example</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -332,86 +332,53 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="custom-scoring-functions">Custom Scoring Functions</h1>
-<p>Below is a minimal working example of different scoring metrics/fitness functions used with the MNIST dataset.</p>
-<pre><code class="python">
-from tpot import TPOT
-from sklearn.datasets import load_digits
+                <h1 id="iris-example">IRIS Example</h1>
+<p>The following code illustrates the usage of TPOT with the IRIS data set. </p>
+<pre><code class="python">from tpot import TPOT
+from sklearn.datasets import load_iris
 from sklearn.cross_validation import train_test_split
 
-digits = load_digits()
-X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target,
-                                                    train_size=0.75)
-
-def precision(result):
-    all_class_tps = []
-    all_class_tps_fps = []
-    for this_class in all_classes:
-        #True Positives are those examples that belong to a class and whose class was guessed correctly
-        this_class_tps = len(result[(result['guess'] == this_class) \
-            &amp; (result['class'] == this_class)])
-        all_class_tps.append(this_class_tps)
-        #False Positives are those examples that were guessed to belong to a class 
-        this_class_tps_fps = len(result[(result['guess'] == this_class) \
-            | (result['class'] == this_class)])
-        all_class_tps_fps.append(this_class_tps_fps)
-
-    micro_avg_precision = float(np.sum(all_class_tps)) / np.sum(all_class_tps_fps)
-
-    return micro_avg_precision
-
-def recall(result):
-    all_class_tps = []
-    all_class_tps_fns = []
-    for this_class in all_classes:
-        this_class_tps = len(result[(result['guess'] == this_class) \
-            &amp; (result['class'] == this_class)]) 
-        #True Positives and False Negatives are those examples that belong to a specific class regardless of guess
-        this_class_tps_fns = len(result[(result['class'] == this_class)])
-        all_class_tps.append(this_class_tps)
-        all_class_tps_fns.append(this_class_tps_fns)
-
-    micro_avg_recall = float(np.sum(all_class_tps)) / np.sum(all_class_tps_fns)
-    return micro_avg_recall
-
-def f1(result):
-    all_class_tps = []
-    all_class_tps_fps = []
-    all_class_tps_fns = []
-    for this_class in all_classes:
-        this_class_tps = len(result[(result['guess'] == this_class) \
-            &amp; (result['class'] == this_class)])
-        this_class_tps_fns = len(result[(result['class'] == this_class)])
-        this_class_tps_fps = len(result[(result['guess'] == this_class) \
-            | (result['class'] == this_class)])
-        all_class_tps.append(this_class_tps)
-        all_class_tps_fps.append(this_class_tps_fps)
-        all_class_tps_fns.append(this_class_tps_fns)
-    micro_avg_precision = float(np.sum(all_class_tps)) / np.sum(all_class_tps_fps)
-    micro_avg_recall = float(np.sum(all_class_tps)) / np.sum(all_class_tps_fns)
-    micro_avg_f1 = 2 * (micro_avg_precision * micro_avg_recall) / (micro_avg_precision + micro_avg_recall)
-
-    return micro_avg_f1
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, train_size=0.75, test_size=0.25)
 
 tpot = TPOT(generations=5)
 tpot.fit(X_train, y_train)
-print 'acc: ', tpot.score(X_train, y_train, X_test, y_test)
-
-tpot = TPOT(generations=5, scoring_function=precision)
-tpot.fit(X_train, y_train)
-print 'precision: ', tpot.score(X_train, y_train, X_test, y_test)
-
-tpot = TPOT(generations=5, scoring_function=recall)
-tpot.fit(X_train, y_train)
-print 'recall: ', tpot.score(X_train, y_train, X_test, y_test)
-
-tpot = TPOT(generations=5, scoring_function=f1)
-tpot.fit(X_train, y_train)
-print 'f1: ', tpot.score(X_train, y_train, X_test, y_test)
-
+print(tpot.score(X_train, y_train, X_test, y_test))
+tpot.export('tpot_iris_pipeline.py')
 </code></pre>
 
-<p>Running this example should discover a pipeline that achieves ~98% testing accuracy, ~93% testing precision, ~97% testing recall, and ~95% testing f1.</p>
+<p>Running this code should discover a pipeline that achieves ~92% testing accuracy. Please note that sometimes when both train_size and test_size aren't specified in train_test_split() calls, the split doesn't use the entire data set. So we need to specify both.  </p>
+<p>For details on how the <code>fit()</code>, <code>score()</code> and <code>export()</code> functions work, please see <a href="../Using_TPOT_via_code/">here</a></p>
+<p>After running the above code, the corresponding Python code should be exported to the <code>tpot_iris_pipeline.py</code> file and look similar to the following:</p>
+<pre><code class="python">import numpy as np
+import pandas as pd
+
+from sklearn.cross_validation import StratifiedShuffleSplit
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+
+# NOTE: Make sure that the class is labeled 'class' in the data file
+tpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')
+training_indeces, testing_indeces = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))
+
+result1 = tpot_data.copy()
+
+# Perform classification with a C-support vector classifier
+svc1 = SVC(C=0.1)
+svc1.fit(result1.loc[training_indeces].drop('class', axis=1).values, result1.loc[training_indeces, 'class'].values)
+result1['svc1-classification'] = svc1.predict(result1.drop('class', axis=1).values)
+
+# Subset the data columns
+subset_df1 = result1[sorted(result1.columns.values)[4042:5640]]
+subset_df2 = result1[[column for column in ['class'] if column not in subset_df1.columns.values]]
+result2 = subset_df1.join(subset_df2)
+
+# Perform classification with a k-nearest neighbor classifier
+knnc3 = KNeighborsClassifier(n_neighbors=min(131, len(training_indeces)))
+knnc3.fit(result2.loc[training_indeces].drop('class', axis=1).values, result2.loc[training_indeces, 'class'].values)
+result3 = result2
+result3['knnc3-classification'] = knnc3.predict(result3.drop('class', axis=1).values)
+</code></pre>
               
             </div>
           </div>
@@ -419,10 +386,10 @@ print 'f1: ', tpot.score(X_train, y_train, X_test, y_test)
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../changelog/" class="btn btn-neutral float-right" title="Changelog">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Custom_Scoring_Functions/" class="btn btn-neutral float-right" title="Custom Scoring Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../IRIS_Example/" class="btn btn-neutral" title="IRIS Example"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../MNIST_Example/" class="btn btn-neutral" title="MNIST Example"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -452,10 +419,10 @@ print 'f1: ', tpot.score(X_train, y_train, X_test, y_test)
           <a href="https://github.com/rhiever/tpot" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../IRIS_Example/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../MNIST_Example/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../changelog/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Custom_Scoring_Functions/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
