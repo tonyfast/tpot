@@ -346,17 +346,21 @@
 <li>
 <p>DEAP</p>
 </li>
+<li>
+<p>XGBoost</p>
+</li>
 </ul>
 <p>Except for DEAP, all of the necessary Python packages can be installed via the <a href="https://www.continuum.io/downloads">Anaconda Python distribution</a>, which we strongly recommend that you use. We also strongly recommend that you use of Python 3 over Python 2 if you're given the choice.</p>
 <p>NumPy, SciPy, pandas, and scikit-learn can be installed in Anaconda via the command:</p>
 <pre><code class="Shell">conda install numpy scipy pandas scikit-learn
 </code></pre>
 
-<p>DEAP can be installed with <code>pip</code> via the command:</p>
-<pre><code class="Shell">pip install deap
+<p>DEAP and XGBoost can be installed with <code>pip</code> via the command:</p>
+<pre><code class="Shell">pip install deap xgboost
 </code></pre>
 
-<p>Finally to install TPOT, run the following command:</p>
+<p>Optional: For OS X users who want to use OpenMP-enabled compilers to install XGBoost, gcc-5.x.x can be installed with Homebrew: <code>brew install gcc --without-multilib</code>.</p>
+<p>Finally to install TPOT itself, run the following command:</p>
 <pre><code class="Shell">pip install tpot
 </code></pre>
 
