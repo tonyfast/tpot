@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/",
-            "text": "Tree-based Pipeline Optimization Tool (TPOT)\n\n\n\n\n\n\n\n\nConsider TPOT your \nData Science Assistant\n. TPOT is a Python tool that automatically creates and optimizes Machine Learning pipelines using genetic programming.\n\n\nTPOT will automate the most tedious part of Machine Learning by intelligently exploring thousands of possible pipelines to find the best one for your data.\n\n\n\n\n\n\nAn example Machine Learning pipeline\n\n\n\n\nOnce TPOT is finished searching (or you get tired of waiting), it provides you with the Python code for the best pipeline it found so you can tinker with the pipeline from there.\n\n\n\n\n\n\nAn example TPOT pipeline\n\n\n\n\nTPOT is built on top of scikit-learn, so all of the code it generates should look familiar... if you're familiar with scikit-learn, anyway.\n\n\nTPOT is still under active development\n and we encourage you to check back on this repository regularly for updates.\n\n\nLicense\n\n\nPlease see the \nrepository license\n for the licensing and usage information for TPOT.",
+            "text": "Tree-based Pipeline Optimization Tool (TPOT)\n\n\n\n\n\n\n\n\nConsider TPOT your \nData Science Assistant\n. TPOT is a Python tool that automatically creates and optimizes Machine Learning pipelines using genetic programming.\n\n\nTPOT will automate the most tedious part of Machine Learning by intelligently exploring thousands of possible pipelines to find the best one for your data.\n\n\n\n\n\n\nAn example Machine Learning pipeline\n\n\n\n\nOnce TPOT is finished searching (or you get tired of waiting), it provides you with the Python code for the best pipeline it found so you can tinker with the pipeline from there.\n\n\n\n\n\n\nAn example TPOT pipeline\n\n\n\n\nTPOT is built on top of scikit-learn, so all of the code it generates should look familiar... if you're familiar with scikit-learn, anyway.\n\n\nTPOT is still under active development\n and we encourage you to check back on this repository regularly for updates.",
             "title": "Home"
         },
         {
@@ -11,8 +11,13 @@
             "title": "Tree-based Pipeline Optimization Tool (TPOT)"
         },
         {
-            "location": "/#license",
-            "text": "Please see the  repository license  for the licensing and usage information for TPOT.",
+            "location": "/license/",
+            "text": "License\n\n\nPlease see the \nrepository license\n for the licensing and usage information for TPOT.\n\n\nGenerally, we have licensed TPOT to make it as widely usable as possible.",
+            "title": "License"
+        },
+        {
+            "location": "/license/#license",
+            "text": "Please see the  repository license  for the licensing and usage information for TPOT.  Generally, we have licensed TPOT to make it as widely usable as possible.",
             "title": "License"
         },
         {
