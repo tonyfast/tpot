@@ -8,7 +8,7 @@
   
   <meta name="author" content="Randal S. Olson">
   
-  <title>GradientBoostingClassifier - Tree-based Pipeline Optimization Tool</title>
+  <title>XGBClassifier - Tree-based Pipeline Optimization Tool</title>
   
 
   <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "GradientBoostingClassifier";
-    var mkdocs_page_input_path = "reference/pipeline_operators/models/classifiers/ensemble/GradientBoostingClassifier.md";
-    var mkdocs_page_url = "/reference/pipeline_operators/models/classifiers/ensemble/GradientBoostingClassifier/";
+    var mkdocs_page_name = "XGBClassifier";
+    var mkdocs_page_input_path = "reference/pipeline_operators/models/classifiers/ensemble/XGBClassifier.md";
+    var mkdocs_page_url = "/reference/pipeline_operators/models/classifiers/ensemble/XGBClassifier/";
   </script>
   
   <script src="../../../../../../js/jquery-2.1.1.min.js"></script>
@@ -177,11 +177,11 @@
         
             
     <li class="toctree-l1 current">
-        <a class="current" href="./">GradientBoostingClassifier</a>
+        <a class="current" href="./">XGBClassifier</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#gradient-boosting-classifier">Gradient Boosting Classifier</a></li>
+                <li class="toctree-l3"><a href="#xgboost-classifier">XGBoost Classifier</a></li>
                 
                     <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
                 
@@ -344,7 +344,7 @@
         
       
     
-    <li>GradientBoostingClassifier</li>
+    <li>XGBClassifier</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -358,15 +358,15 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="gradient-boosting-classifier">Gradient Boosting Classifier</h1>
+                <h1 id="xgboost-classifier">XGBoost Classifier</h1>
 <hr />
-<p>Fits a Gradient Boosting classifier.</p>
+<p>Fits the dmlc eXtreme gradient boosting classifier.</p>
 <h2 id="dependencies">Dependencies</h2>
-<pre><code>sklearn.ensemble.GradientBoostingClassifier
+<pre><code>xgboost.XGBClassifier
 </code></pre>
 <h2 id="parameters">Parameters</h2>
 <pre><code>input_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}
-    Input DataFrame for fitting the gradient boosting classifier
+    Input DataFrame for fitting the XGBoost classifier
 learning_rate: float
     Shrinks the contribution of each tree by learning_rate
 n_estimators: int
@@ -383,7 +383,7 @@ max_depth: int
 <pre><code class="Python">import numpy as np
 import pandas as pd
 from sklearn.cross_validation import StratifiedShuffleSplit
-from sklearn.ensemble import GradientBoostingClassifier
+from xgboost import XGBClassifier
 
 # NOTE: Make sure that the class is labeled 'class' in the data file
 tpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')
@@ -392,10 +392,10 @@ training_indices, testing_indices = next(iter(StratifiedShuffleSplit(tpot_data['
 result1 = tpot_data.copy()
 
 # Perform classification with a gradient boosting classifier
-gbc1 = GradientBoostingClassifier(learning_rate=0.0001, n_estimators=1, max_depth=None)
-gbc1.fit(result1.loc[training_indices].drop('class', axis=1).values, result1.loc[training_indices, 'class'].values)
+xgbc1 = XGBClassifier(learning_rate=0.0001, n_estimators=1, max_depth=None)
+xgbc1.fit(result1.loc[training_indices].drop('class', axis=1).values, result1.loc[training_indices, 'class'].values)
 
-result1['gbc1-classification'] = gbc1.predict(result1.drop('class', axis=1).values)
+result1['xgbc1-classification'] = xgbc1.predict(result1.drop('class', axis=1).values)
 
 </code></pre>
               
