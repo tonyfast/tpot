@@ -19,7 +19,7 @@
 
     
     <url>
-     <loc>http://rhiever.github.io/tpot/Using_TPOT/</loc>
+     <loc>http://rhiever.github.io/tpot/using/</loc>
      <lastmod>2016-02-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -58,6 +58,18 @@
     <url>
      <loc>http://rhiever.github.io/tpot/documentation/</loc>
      <lastmod>2016-02-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://rhiever.github.io/tpot/documentation/TPOT/</loc>
+     <lastmod>2016-02-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://rhiever.github.io/tpot</loc>
+     <lastmod></lastmod>
      <changefreq>daily</changefreq>
     </url>
         

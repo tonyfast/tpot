@@ -8,7 +8,7 @@
   
   <meta name="author" content="Randal S. Olson">
   
-  <title>Installation - TPOT</title>
+  <title>Using TPOT - TPOT</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Installation";
-    var mkdocs_page_input_path = "installing.md";
-    var mkdocs_page_url = "/installing/";
+    var mkdocs_page_name = "Using TPOT";
+    var mkdocs_page_input_path = "using.md";
+    var mkdocs_page_url = "/using/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -62,22 +62,25 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Installation</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#installation">Installation</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../installing/">Installation</a>
         
     </li>
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../using/">Using TPOT</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Using TPOT</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#tpot-on-the-command-line">TPOT on the command line</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#tpot-with-code">TPOT with code</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -307,7 +310,7 @@
     
       
     
-    <li>Installation</li>
+    <li>Using TPOT</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -321,43 +324,84 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="installation">Installation</h1>
-<p>TPOT is built on top of several existing Python libraries, including:</p>
+                <h1 id="tpot-on-the-command-line">TPOT on the command line</h1>
+<p>To use TPOT via the command line, enter the following command to see the parameters that TPOT can receive:</p>
+<pre><code class="Shell">tpot --help
+</code></pre>
+
+<p>The following parameters will display along with their descriptions:</p>
 <ul>
-<li>
-<p>NumPy</p>
-</li>
-<li>
-<p>SciPy</p>
-</li>
-<li>
-<p>pandas</p>
-</li>
-<li>
-<p>scikit-learn</p>
-</li>
-<li>
-<p>DEAP</p>
-</li>
-<li>
-<p>XGBoost</p>
-</li>
+<li><code>-i</code> / <code>INPUT_FILE</code>: The path to the data file to optimize the pipeline on. Make sure that the class column in the file is labeled as "class".</li>
+<li><code>-is</code> / <code>INPUT_SEPARATOR</code>: The character used to separate columns in the input file. Commas (,) and tabs (\t) are the most common separators.</li>
+<li><code>-o</code> / <code>OUTPUT_FILE</code>: The path to a file that you wish to export the pipeline code into. By default, exporting is disabled.</li>
+<li><code>-g</code> / <code>GENERATIONS</code>: The number of generations to run pipeline optimization for. Must be &gt; 0. The more generations you give TPOT to run, the longer it takes, but it's also more likely to find better pipelines.</li>
+<li><code>-p</code> / <code>POPULATION</code>: The number of pipelines in the genetic algorithm population. Must be &gt; 0. The more pipelines in the population, the slower TPOT will run, but it's also more likely to find better pipelines.</li>
+<li><code>-mr</code> / <code>MUTATION_RATE</code>: The mutation rate for the genetic programming algorithm in the range [0.0, 1.0]. This tells the genetic programming algorithm how many pipelines to apply random changes to every generation. We don't recommend that you tweak this parameter unless you know what you're doing.</li>
+<li><code>-xr</code> / <code>CROSSOVER_RATE</code>: The crossover rate for the genetic programming algorithm in the range [0.0, 1.0]. This tells the genetic programming algorithm how many pipelines to "breed" every generation. We don't recommend that you tweak this parameter unless you know what you're doing.</li>
+<li><code>-s</code> / <code>RANDOM_STATE</code>: The random number generator seed for TPOT. Use this to make sure that TPOT will give you the same results each time you run it against the same data set with that seed.</li>
+<li><code>-v</code> / <code>VERBOSITY</code>: How much information TPOT communicates while it's running. 0 = none, 1 = minimal, 2 = all</li>
 </ul>
-<p>Except for DEAP, all of the necessary Python packages can be installed via the <a href="https://www.continuum.io/downloads">Anaconda Python distribution</a>, which we strongly recommend that you use. We also strongly recommend that you use of Python 3 over Python 2 if you're given the choice.</p>
-<p>NumPy, SciPy, pandas, and scikit-learn can be installed in Anaconda via the command:</p>
-<pre><code class="Shell">conda install numpy scipy pandas scikit-learn
+<p>An example command-line call to TPOT may look like:</p>
+<pre><code class="Shell">tpot -i data/mnist.csv -is , -o tpot_exported_pipeline.py -g 100 -s 42 -v 2
 </code></pre>
 
-<p>DEAP and XGBoost can be installed with <code>pip</code> via the command:</p>
-<pre><code class="Shell">pip install deap xgboost
+<h1 id="tpot-with-code">TPOT with code</h1>
+<p>We've taken care to design the TPOT interface to be as similar as possible to scikit-learn.</p>
+<p>TPOT can be imported just like any regular Python module. To import TPOT, type:</p>
+<pre><code class="Python">from tpot import TPOT
 </code></pre>
 
-<p>Optional: For OS X users who want to use OpenMP-enabled compilers to install XGBoost, gcc-5.x.x can be installed with Homebrew: <code>brew install gcc --without-multilib</code>.</p>
-<p>Finally to install TPOT itself, run the following command:</p>
-<pre><code class="Shell">pip install tpot
+<p>then create an instance of TPOT as follows:</p>
+<pre><code class="Python">from tpot import TPOT
+
+pipeline_optimizer = TPOT()
 </code></pre>
 
-<p>Please <a href="https://github.com/rhiever/tpot/issues/new">file a new issue</a> if you run into installation problems.</p>
+<p>Note that you can pass several parameters to the TPOT instantiation call:</p>
+<ul>
+<li><code>generations</code>: The number of generations to run pipeline optimization for. Must be &gt; 0. The more generations you give TPOT to run, the longer it takes, but it's also more likely to find better pipelines.</li>
+<li><code>population_size</code>: The number of pipelines in the genetic algorithm population. Must be &gt; 0. The more pipelines in the population, the slower TPOT will run, but it's also more likely to find better pipelines.</li>
+<li><code>mutation_rate</code>: The mutation rate for the genetic programming algorithm in the range [0.0, 1.0]. This tells the genetic programming algorithm how many pipelines to apply random changes to every generation. We don't recommend that you tweak this parameter unless you know what you're doing.</li>
+<li><code>crossover_rate</code>: The crossover rate for the genetic programming algorithm in the range [0.0, 1.0]. This tells the genetic programming algorithm how many pipelines to "breed" every generation. We don't recommend that you tweak this parameter unless you know what you're doing.</li>
+<li><code>random_state</code>: The random number generator seed for TPOT. Use this to make sure that TPOT will give you the same results each time you run it against the same data set with that seed.</li>
+<li><code>verbosity</code>: How much information TPOT communicates while it's running. 0 = none, 1 = minimal, 2 = all</li>
+</ul>
+<p>Some example code with custom TPOT parameters might look like:</p>
+<pre><code class="Python">from tpot import TPOT
+
+pipeline_optimizer = TPOT(generations=100, random_state=42, verbosity=2)
+</code></pre>
+
+<p>Now TPOT is ready to work! You can tell TPOT to optimize a pipeline based on a data set with the <code>fit</code> function:</p>
+<pre><code class="Python">from tpot import TPOT
+
+pipeline_optimizer = TPOT(generations=100, random_state=42, verbosity=2)
+pipeline_optimizer.fit(training_features, training_classes)
+</code></pre>
+
+<p>The <code>fit()</code> function takes in a training data set, then further divides it into a training and validation data set (so as to do cross-validation). It then initializes the Genetic Algoritm to find the best pipeline based on the validation set performance evaluated on the basis of a scoring function (generally the classification accuracy, but can be user defined as well like precision/recall/f1, etc).   </p>
+<p>You can then proceed to evaluate the final pipeline on the test set with the <code>score()</code> function:</p>
+<pre><code class="Python">from tpot import TPOT
+
+pipeline_optimizer = TPOT(generations=100, random_state=42, verbosity=2)
+pipeline_optimizer.fit(training_features, training_classes)
+print(pipeline_optimizer.score(training_features, training_classes,
+                               testing_features, testing_classes))
+</code></pre>
+
+<p>Note that you currently need to pass the training data to the <code>score()</code> function so TPOT re-trains the optimized pipeline on the training data.</p>
+<p>You also have the option to pass a user-defined scoring function to <code>score()</code>. For more information on this functionality, check <a href="../examples/Custom_Scoring_Functions/">here</a>. </p>
+<p>Finally, you can tell TPOT to export the corresponding Python code for the optimized pipeline to a text file with the <code>export()</code> function:</p>
+<pre><code class="Python">from tpot import TPOT
+
+pipeline_optimizer = TPOT(generations=100, random_state=42, verbosity=2)
+pipeline_optimizer.fit(training_features, training_classes)
+print(pipeline_optimizer.score(training_features, training_classes, testing_features, testing_classes))
+pipeline_optimizer.export('tpot_exported_pipeline.py')
+</code></pre>
+
+<p>Once this code finishes running, <code>tpot_exported_pipeline.py</code> will contain the Python code for the optimized pipeline.</p>
+<p>Check our <a href="../examples/MNIST_Example/">examples</a> to see TPOT applied to some specific data sets.</p>
               
             </div>
           </div>
@@ -365,10 +409,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../using/" class="btn btn-neutral float-right" title="Using TPOT">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../examples/MNIST_Example/" class="btn btn-neutral float-right" title="MNIST Example">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../installing/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -398,10 +442,10 @@
           <a href="https://github.com/rhiever/tpot" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../installing/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../using/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../examples/MNIST_Example/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
