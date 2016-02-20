@@ -4,17 +4,17 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="TPOT is a Python tool that automatically creates and optimizes machine learning pipelines using genetic programming.">
+        
         <meta name="author" content="Randal S. Olson">
-        <link rel="canonical" href="http://rhiever.github.io/tpot/">
-        <link rel="shortcut icon" href="./img/favicon.ico">
+        <link rel="canonical" href="http://rhiever.github.io/tpot/documentation/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>TPOT</title>
+	<title>Documentation - TPOT</title>
 
-        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/highlight.css">
-        <link href="./css/base.css" rel="stylesheet">
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -41,7 +41,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href=".">TPOT</a>
+            <a class="navbar-brand" href="..">TPOT</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -50,20 +50,20 @@
             <ul class="nav navbar-nav">
             
             
-                <li class="active">
-                    <a href=".">Home</a>
+                <li >
+                    <a href="..">Home</a>
                 </li>
             
             
             
                 <li >
-                    <a href="installing/">Installation</a>
+                    <a href="../installing/">Installation</a>
                 </li>
             
             
             
                 <li >
-                    <a href="Using_TPOT/">Using TPOT</a>
+                    <a href="../Using_TPOT/">Using TPOT</a>
                 </li>
             
             
@@ -73,19 +73,19 @@
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="examples/MNIST_Example/">MNIST Example</a>
+                            <a href="../examples/MNIST_Example/">MNIST Example</a>
                         </li>
                     
                         <li >
-                            <a href="examples/IRIS_Example/">IRIS Example</a>
+                            <a href="../examples/IRIS_Example/">IRIS Example</a>
                         </li>
                     
                         <li >
-                            <a href="examples/Titanic_Kaggle_Example/">Titanic Kaggle Example</a>
+                            <a href="../examples/Titanic_Kaggle_Example/">Titanic Kaggle Example</a>
                         </li>
                     
                         <li >
-                            <a href="examples/Custom_Scoring_Functions/">Custom Scoring Functions</a>
+                            <a href="../examples/Custom_Scoring_Functions/">Custom Scoring Functions</a>
                         </li>
                     
                     </ul>
@@ -93,16 +93,16 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li >
-                            <a href="documentation/">Documentation</a>
+                        <li class="active">
+                            <a href="./">Documentation</a>
                         </li>
                     
                         <li >
-                            <a href="contributing/">Contributing</a>
+                            <a href="../contributing/">Contributing</a>
                         </li>
                     
                     </ul>
@@ -118,13 +118,13 @@
                         <i class="fa fa-search"></i> Search
                     </a>
                 </li>
-                <li class="disabled">
-                    <a rel="next" >
+                <li >
+                    <a rel="next" href="../examples/Custom_Scoring_Functions/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="installing/">
+                    <a rel="prev" href="../contributing/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -147,42 +147,56 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#tree-based-pipeline-optimization-tool-tpot">Tree-based Pipeline Optimization Tool (TPOT)</a></li>
+        <li class="main active"><a href="#tpot-object">TPOT Object</a></li>
         
     
-        <li class="main "><a href="#license">License</a></li>
+        <li class="main "><a href="#pipeline-operators">Pipeline Operators</a></li>
+        
+            <li><a href="#models">Models</a></li>
+        
+            <li><a href="#feature-selection">Feature Selection</a></li>
+        
+            <li><a href="#pre-processing">Pre-processing</a></li>
+        
+            <li><a href="#decomposition">Decomposition</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="tree-based-pipeline-optimization-tool-tpot">Tree-based Pipeline Optimization Tool (TPOT)</h1>
-<p>Consider TPOT your <strong>Data Science Assistant</strong>. TPOT is a Python tool that automatically creates and optimizes machine learning pipelines using genetic programming.</p>
-<p><br /></p>
-<p><center>
-<img src="https://raw.githubusercontent.com/rhiever/tpot/master/images/tpot-demo.gif" width=800 alt="TPOT Demo" />
-</center></p>
-<p><br /></p>
-<p>TPOT will automate the most tedious part of machine learning by intelligently exploring thousands of possible pipelines to find the best one for your data.</p>
-<p><br /></p>
-<p><center>
-<img src="https://raw.githubusercontent.com/rhiever/tpot/master/images/tpot-ml-pipeline.png" width=800 alt="An example machine learning pipeline" /></p>
-<p><strong>An example machine learning pipeline</strong>
-</center></p>
-<p><br /></p>
-<p>Once TPOT is finished searching (or you get tired of waiting), it provides you with the Python code for the best pipeline it found so you can tinker with the pipeline from there.</p>
-<p><br /></p>
-<p><center>
-<img src="https://raw.githubusercontent.com/rhiever/tpot/master/images/tpot-pipeline-example.png" width=800 alt="An example TPOT pipeline" /></p>
-<p><strong>An example TPOT pipeline</strong>
-</center></p>
-<p><br /></p>
-<p>TPOT is built on top of scikit-learn, so all of the code it generates should look familiar... if you're familiar with scikit-learn, anyway.</p>
-<p><strong>TPOT is still under active development</strong> and we encourage you to check back on this repository regularly for updates.</p>
-<h1 id="license">License</h1>
-<p>Please see the <a href="https://github.com/rhiever/tpot/blob/master/LICENSE">repository license</a> for the licensing and usage information for TPOT.</p>
-<p>Generally, we have licensed TPOT to make it as widely usable as possible.</p></div>
+<h1 id="tpot-object">TPOT Object</h1>
+<ul>
+<li><a href="TPOT.md">TPOT Object</a></li>
+</ul>
+<hr />
+<h1 id="pipeline-operators">Pipeline Operators</h1>
+<h2 id="models">Models</h2>
+<ul>
+<li><a href="pipeline_operators/models/classifiers/tree/DecisionTreeClassifier.md">pipeline_operators.models.tree.DecisionTreeClassifier</a></li>
+<li><a href="pipeline_operators/models/classifiers/ensemble/RandomForestClassifier.md">pipeline_operators.models.ensemble.RandomForestClassifier</a></li>
+<li><a href="../pipeline_operators/models/classifiers/ensemble/XGBClassifier">pipeline_operators.models.ensemble.XGBClassifier</a></li>
+<li><a href="pipeline_operators/models/classifiers/svm/SVC.md">pipeline_operators.models.svm.SVC</a></li>
+<li><a href="pipeline_operators/models/classifiers/nearest_neighbors/kNeighborsClassifier.md">pipeline_operators.models.nearest_neighbors.kNeighborsClassifier</a></li>
+<li><a href="pipeline_operators/models/classifiers/linear_model/LogisticRegression.md">pipeline_operators.models.linear_model.LogisticRegression</a></li>
+</ul>
+<h2 id="feature-selection">Feature Selection</h2>
+<ul>
+<li><a href="pipeline_operators/feature_selection/VarianceThreshold.md">pipeline_operators.feature_selection.VarianceThreshold</a></li>
+<li><a href="pipeline_operators/feature_selection/SelectKBest.md">pipeline_operators.feature_selection.SelectKBest</a></li>
+<li><a href="pipeline_operators/feature_selection/SelectPercentile.md">pipeline_operators.feature_selection.SelectPercentile</a></li>
+<li><a href="pipeline_operators/feature_selection/RFE.md">pipeline_operators.feature_selection.RFE</a></li>
+</ul>
+<h2 id="pre-processing">Pre-processing</h2>
+<ul>
+<li><a href="pipeline_operators/preprocessing/PolynomialFeatures.md">pipeline_operators.preprocessing.PolynomialFeatures</a></li>
+<li><a href="pipeline_operators/preprocessing/scaling/StandardScaler.md">pipeline_operators.preprocessing.scaling.StandardScaler</a></li>
+<li><a href="pipeline_operators/preprocessing/scaling/RobustScaler.md">pipeline_operators.preprocessing.scaling.RobustScaler</a></li>
+</ul>
+<h2 id="decomposition">Decomposition</h2>
+<ul>
+<li><a href="pipeline_operators/decomposition/RandomizedPCA.md">pipeline_operators.decomposition.RandomizedPCA</a></li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -193,12 +207,12 @@
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
 
-        <script src="./js/jquery-1.10.2.min.js"></script>
-        <script src="./js/bootstrap-3.0.3.min.js"></script>
-        <script src="./js/highlight.pack.js"></script>
-        <script>var base_url = '.';</script>
-        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
-        <script src="./js/base.js"></script>
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">
