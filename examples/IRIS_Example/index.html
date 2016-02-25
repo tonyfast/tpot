@@ -336,12 +336,12 @@ X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, trai
 
 tpot = TPOT(generations=5)
 tpot.fit(X_train, y_train)
-print(tpot.score(X_train, y_train, X_test, y_test))
+print(tpot.score(X_test, y_test))
 tpot.export('tpot_iris_pipeline.py')
 </code></pre>
 
 <p>Running this code should discover a pipeline that achieves ~92% testing accuracy. Note that sometimes when both <code>train_size</code> and <code>test_size</code> aren't specified in <code>train_test_split()</code> calls, the split doesn't use the entire data set, so we need to specify both.</p>
-<p>For details on how the <code>fit()</code>, <code>score()</code> and <code>export()</code> functions work, see the <a href="Using_TPOT.md">usage documentation</a></p>
+<p>For details on how the <code>fit()</code>, <code>score()</code> and <code>export()</code> functions work, see the <a href="../../using/">usage documentation</a>.</p>
 <p>After running the above code, the corresponding Python code should be exported to the <code>tpot_iris_pipeline.py</code> file and look similar to the following:</p>
 <pre><code class="python">import numpy as np
 import pandas as pd

@@ -327,7 +327,7 @@
               
                 <h2 id="tpot">TPOT</h2>
 <hr />
-<p><strong>tpot.fit(self,features, classes, feature_names=None)</strong></p>
+<p><strong>tpot.fit(self, features, classes, feature_names=None)</strong></p>
 <p>Uses genetic programming to optimize a Machine Learning pipeline that
    maximizes classification accuracy on the provided <code>features</code> and <code>classes</code>.
    Optionally, name the features in the data frame according to <code>feature_names</code>.
@@ -345,14 +345,10 @@ feature_names: array-like {n_features} (default: None)
 <pre><code>None
 </code></pre>
 <hr />
-<p><strong>tpot.predict(self, training_features, training_classes, testing_features)</strong></p>
+<p><strong>tpot.predict(self, testing_features)</strong></p>
 <p>Uses the optimized pipeline to predict the classes for a feature set.</p>
 <p><em>Parameters</em></p>
-<pre><code>training_features: array-like {n_samples, n_features}
-    Feature matrix of the training set
-training_classes: array-like {n_samples}
-    List of class labels for prediction in the training set
-testing_features: array-like {n_samples, n_features}
+<pre><code>testing_features: array-like {n_samples, n_features}
     Feature matrix of the testing set
 </code></pre>
 <p><em>Returns</em></p>
@@ -360,15 +356,11 @@ testing_features: array-like {n_samples, n_features}
     Predicted classes for the testing set
 </code></pre>
 <hr />
-<p><strong>tpot.score(self, training_features, training_classes, testing_features, testing_classes)</strong></p>
+<p><strong>tpot.score(self, testing_features, testing_classes)</strong></p>
 <pre><code>Estimates the testing accuracy of the optimized pipeline.
 </code></pre>
 <p><em>Parameters</em></p>
-<pre><code>training_features: array-like {n_samples, n_features}
-    Feature matrix of the training set
-training_classes: array-like {n_samples}
-    List of class labels for prediction in the training set
-testing_features: array-like {n_samples, n_features}
+<pre><code>testing_features: array-like {n_samples, n_features}
     Feature matrix of the testing set
 testing_classes: array-like {n_samples}
     List of class labels for prediction in the testing set
@@ -378,7 +370,7 @@ testing_classes: array-like {n_samples}
     The estimated test set accuracy
 </code></pre>
 <hr />
-<p><strong>tpot.export(self, output_file_name)</strong> </p>
+<p><strong>tpot.export(self, output_file_name)</strong></p>
 <pre><code>Exports the current optimized pipeline as Python code.
 </code></pre>
 <p><em>Parameters</em></p>
