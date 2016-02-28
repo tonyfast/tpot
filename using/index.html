@@ -330,28 +330,32 @@
 
 usage: tpot [-h] [-is INPUT_SEPARATOR] [-o OUTPUT_FILE] [-g GENERATIONS]
             [-p POPULATION_SIZE] [-mr MUTATION_RATE] [-xr CROSSOVER_RATE]
-            [-s RANDOM_STATE] [-v {0,1,2}] [--version]
+            [-s RANDOM_STATE] [-v {0,1,2}] [--disable-update-check]
+            [--version]
             INPUT_FILE
 
 A Python tool that automatically creates and optimizes machine learning
 pipelines using genetic programming.
 
 positional arguments:
-  INPUT_FILE           Data file to optimize the pipeline on; ensure that the
-                       class column is labeled as &quot;class&quot;
+  INPUT_FILE            Data file to optimize the pipeline on; ensure that the
+                        class column is labeled as &quot;class&quot;
 
 optional arguments:
-  -h, --help           show this help message and exit
-  -is INPUT_SEPARATOR  Character used to separate columns in the input file
-  -o OUTPUT_FILE       File to export the final optimized pipeline
-  -g GENERATIONS       Number of generations to run pipeline optimization
-  -p POPULATION_SIZE   Number of individuals in the GP population
-  -mr MUTATION_RATE    GP mutation rate in the range [0.0, 1.0]
-  -xr CROSSOVER_RATE   GP crossover rate in the range [0.0, 1.0]
-  -s RANDOM_STATE      Random number generator seed for reproducibility
-  -v {0,1,2}           How much information TPOT communicates while it is
-                       running; 0 = none, 1 = minimal, 2 = all
-  --version            show program's version number and exit
+  -h, --help            show this help message and exit
+  -is INPUT_SEPARATOR   Character used to separate columns in the input file
+  -o OUTPUT_FILE        File to export the final optimized pipeline
+  -g GENERATIONS        Number of generations to run pipeline optimization
+  -p POPULATION_SIZE    Number of individuals in the GP population
+  -mr MUTATION_RATE     GP mutation rate in the range [0.0, 1.0]
+  -xr CROSSOVER_RATE    GP crossover rate in the range [0.0, 1.0]
+  -s RANDOM_STATE       Random number generator seed for reproducibility
+  -v {0,1,2}            How much information TPOT communicates while it is
+                        running; 0 = none, 1 = minimal, 2 = all
+  --disable-update-check
+                        Flag indicating whether the TPOT version checker
+                        should be disabled
+  --version             show program's version number and exit
 </code></pre>
 
 <p>An example command-line call to TPOT may look like:</p>
@@ -378,6 +382,8 @@ pipeline_optimizer = TPOT()
 <li><code>crossover_rate</code>: The crossover rate for the genetic programming algorithm in the range [0.0, 1.0]. This tells the genetic programming algorithm how many pipelines to "breed" every generation. We don't recommend that you tweak this parameter unless you know what you're doing.</li>
 <li><code>random_state</code>: The random number generator seed for TPOT. Use this to make sure that TPOT will give you the same results each time you run it against the same data set with that seed.</li>
 <li><code>verbosity</code>: How much information TPOT communicates while it's running. 0 = none, 1 = minimal, 2 = all</li>
+<li><code>scoring_function</code>: Function used to evaluate the goodness of a given pipeline for the classification problem. By default, balanced class accuracy is used. See <a href="../examples/Custom_Scoring_Functions/">here</a> for more information on custom scoring functions.</li>
+<li><code>disable_update_check</code>: Flag indicating whether the TPOT version checker should be disabled.</li>
 </ul>
 <p>Some example code with custom TPOT parameters might look like:</p>
 <pre><code class="Python">from tpot import TPOT
@@ -401,7 +407,6 @@ pipeline_optimizer.fit(training_features, training_classes)
 print(pipeline_optimizer.score(testing_features, testing_classes))
 </code></pre>
 
-<p>You also have the option to pass a user-defined scoring function to <code>score()</code>. For more information on this functionality, check <a href="../examples/Custom_Scoring_Functions/">here</a>. </p>
 <p>Finally, you can tell TPOT to export the corresponding Python code for the optimized pipeline to a text file with the <code>export()</code> function:</p>
 <pre><code class="Python">from tpot import TPOT
 
