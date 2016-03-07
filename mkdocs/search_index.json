@@ -366,6 +366,96 @@
             "title": "Example Exported Code"
         },
         {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MinMaxScaler/",
+            "text": "MinMax Feature Scaler\n\n\n\n\nUses Scikit-learn's MinMaxScaler to transform all of the features by scaling them to the range [0, 1]\n\n\nDependencies\n\n\nsklearn.preprocessing.MinMaxScaler\n\n\n\nParameters\n\n\ninput_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}\n    Input DataFrame to scale\n\n\n\nReturns\n\n\nscaled_df: pandas.DataFrame {n_samples, n_features + ['guess', 'group', 'class']}\n    Returns a DataFrame containing the scaled features\n\n\n\nExample Exported Code\n\n\nimport numpy as np\nimport pandas as pd\nfrom sklearn.cross_validation import StratifiedShuffleSplit\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.tree import DecisionTreeClassifier\n\n# NOTE: Make sure that the class is labeled 'class' in the data file\ntpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')\ntraining_indices, testing_indices = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))\n\n# Use Scikit-learn's MinMaxScaler to scale the features\ntraining_features = tpot_data.loc[training_indices].drop('class', axis=1)\nresult1 = tpot_data.copy()\n\nif len(training_features.columns.values) > 0:\n    scaler = MinMaxScaler()\n    scaler.fit(training_features.values.astype(np.float64))\n    scaled_features = scaler.transform(result1.drop('class', axis=1).values.astype(np.float64))\n    result1 = pd.DataFrame(data=scaled_features)\n    result1['class'] = tpot_data['class'].values\n\n\n# Perform classification with a decision tree classifier\nresult2 = result1.copy()\n\ndtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)\ndtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)\n\nresult2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)",
+            "title": "MinMaxScaler"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MinMaxScaler/#minmax-feature-scaler",
+            "text": "Uses Scikit-learn's MinMaxScaler to transform all of the features by scaling them to the range [0, 1]",
+            "title": "MinMax Feature Scaler"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MinMaxScaler/#dependencies",
+            "text": "sklearn.preprocessing.MinMaxScaler",
+            "title": "Dependencies"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MinMaxScaler/#parameters",
+            "text": "input_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}\n    Input DataFrame to scale",
+            "title": "Parameters"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MinMaxScaler/#returns",
+            "text": "scaled_df: pandas.DataFrame {n_samples, n_features + ['guess', 'group', 'class']}\n    Returns a DataFrame containing the scaled features",
+            "title": "Returns"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MinMaxScaler/#example-exported-code",
+            "text": "import numpy as np\nimport pandas as pd\nfrom sklearn.cross_validation import StratifiedShuffleSplit\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.tree import DecisionTreeClassifier\n\n# NOTE: Make sure that the class is labeled 'class' in the data file\ntpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')\ntraining_indices, testing_indices = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))\n\n# Use Scikit-learn's MinMaxScaler to scale the features\ntraining_features = tpot_data.loc[training_indices].drop('class', axis=1)\nresult1 = tpot_data.copy()\n\nif len(training_features.columns.values) > 0:\n    scaler = MinMaxScaler()\n    scaler.fit(training_features.values.astype(np.float64))\n    scaled_features = scaler.transform(result1.drop('class', axis=1).values.astype(np.float64))\n    result1 = pd.DataFrame(data=scaled_features)\n    result1['class'] = tpot_data['class'].values\n\n\n# Perform classification with a decision tree classifier\nresult2 = result1.copy()\n\ndtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)\ndtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)\n\nresult2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)",
+            "title": "Example Exported Code"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MaxAbsScaler/",
+            "text": "MaxAbs Feature Scaler\n\n\n\n\nUses Scikit-learn's MaxAbsScaler to transform all of the features by scaling them to [0, 1] relative to the feature's maximum value\n\n\nDependencies\n\n\nsklearn.preprocessing.MaxAbsScaler\n\n\n\nParameters\n\n\ninput_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}\n    Input DataFrame to scale\n\n\n\nReturns\n\n\nscaled_df: pandas.DataFrame {n_samples, n_features + ['guess', 'group', 'class']}\n    Returns a DataFrame containing the scaled features\n\n\n\nExample Exported Code\n\n\nimport numpy as np\nimport pandas as pd\nfrom sklearn.cross_validation import StratifiedShuffleSplit\nfrom sklearn.preprocessing import MaxAbsScaler\nfrom sklearn.tree import DecisionTreeClassifier\n\n# NOTE: Make sure that the class is labeled 'class' in the data file\ntpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')\ntraining_indices, testing_indices = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))\n\n# Use Scikit-learn's MaxAbsScaler to scale the features\ntraining_features = tpot_data.loc[training_indices].drop('class', axis=1)\nresult1 = tpot_data.copy()\n\nif len(training_features.columns.values) > 0:\n    scaler = MaxAbsScaler()\n    scaler.fit(training_features.values.astype(np.float64))\n    scaled_features = scaler.transform(result1.drop('class', axis=1).values.astype(np.float64))\n    result1 = pd.DataFrame(data=scaled_features)\n    result1['class'] = tpot_data['class'].values\n\n# Perform classification with a decision tree classifier\nresult2 = result1.copy()\n\ndtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)\ndtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)\n\nresult2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)",
+            "title": "MaxAbsScaler"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MaxAbsScaler/#maxabs-feature-scaler",
+            "text": "Uses Scikit-learn's MaxAbsScaler to transform all of the features by scaling them to [0, 1] relative to the feature's maximum value",
+            "title": "MaxAbs Feature Scaler"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MaxAbsScaler/#dependencies",
+            "text": "sklearn.preprocessing.MaxAbsScaler",
+            "title": "Dependencies"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MaxAbsScaler/#parameters",
+            "text": "input_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}\n    Input DataFrame to scale",
+            "title": "Parameters"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MaxAbsScaler/#returns",
+            "text": "scaled_df: pandas.DataFrame {n_samples, n_features + ['guess', 'group', 'class']}\n    Returns a DataFrame containing the scaled features",
+            "title": "Returns"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/MaxAbsScaler/#example-exported-code",
+            "text": "import numpy as np\nimport pandas as pd\nfrom sklearn.cross_validation import StratifiedShuffleSplit\nfrom sklearn.preprocessing import MaxAbsScaler\nfrom sklearn.tree import DecisionTreeClassifier\n\n# NOTE: Make sure that the class is labeled 'class' in the data file\ntpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')\ntraining_indices, testing_indices = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))\n\n# Use Scikit-learn's MaxAbsScaler to scale the features\ntraining_features = tpot_data.loc[training_indices].drop('class', axis=1)\nresult1 = tpot_data.copy()\n\nif len(training_features.columns.values) > 0:\n    scaler = MaxAbsScaler()\n    scaler.fit(training_features.values.astype(np.float64))\n    scaled_features = scaler.transform(result1.drop('class', axis=1).values.astype(np.float64))\n    result1 = pd.DataFrame(data=scaled_features)\n    result1['class'] = tpot_data['class'].values\n\n# Perform classification with a decision tree classifier\nresult2 = result1.copy()\n\ndtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)\ndtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)\n\nresult2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)",
+            "title": "Example Exported Code"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/Binarizer/",
+            "text": "Binarizer\n\n\n\n\nUses Scikit-learn's Binarizer to binarize all of the features, setting any feature >\nthreshold\n to 1 and all others to 0\n\n\nDependencies\n\n\nsklearn.preprocessing.Binarizer\n\n\n\nParameters\n\n\ninput_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}\n    Input DataFrame to scale\nthreshold: float\n        Feature values below or equal to this value are replaced by 0, above it by 1\n\n\n\nReturns\n\n\nscaled_df: pandas.DataFrame {n_samples, n_features + ['guess', 'group', 'class']}\n    Returns a DataFrame containing the scaled features\n\n\n\nExample Exported Code\n\n\nimport numpy as np\nimport pandas as pd\nfrom sklearn.cross_validation import StratifiedShuffleSplit\nfrom sklearn.preprocessing import Binarizer\nfrom sklearn.tree import DecisionTreeClassifier\n\n# NOTE: Make sure that the class is labeled 'class' in the data file\ntpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')\ntraining_indices, testing_indices = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))\n\n# Use Scikit-learn's Binarizer to scale the features\ntraining_features = tpot_data.loc[training_indices].drop('class', axis=1)\nresult1 = tpot_data.copy()\n\nif len(training_features.columns.values) > 0:\n    scaler = Binarizer(threshold=0.7)\n    scaler.fit(training_features.values.astype(np.float64))\n    scaled_features = scaler.transform(result1.drop('class', axis=1).values.astype(np.float64))\n    result1 = pd.DataFrame(data=scaled_features)\n    result1['class'] = tpot_data['class'].values\n\n# Perform classification with a decision tree classifier\nresult2 = result1.copy()\n\ndtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)\ndtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)\n\nresult2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)",
+            "title": "Binarizer"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/Binarizer/#binarizer",
+            "text": "Uses Scikit-learn's Binarizer to binarize all of the features, setting any feature > threshold  to 1 and all others to 0",
+            "title": "Binarizer"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/Binarizer/#dependencies",
+            "text": "sklearn.preprocessing.Binarizer",
+            "title": "Dependencies"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/Binarizer/#parameters",
+            "text": "input_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}\n    Input DataFrame to scale\nthreshold: float\n        Feature values below or equal to this value are replaced by 0, above it by 1",
+            "title": "Parameters"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/Binarizer/#returns",
+            "text": "scaled_df: pandas.DataFrame {n_samples, n_features + ['guess', 'group', 'class']}\n    Returns a DataFrame containing the scaled features",
+            "title": "Returns"
+        },
+        {
+            "location": "/documentation/pipeline_operators/preprocessing/scaling/Binarizer/#example-exported-code",
+            "text": "import numpy as np\nimport pandas as pd\nfrom sklearn.cross_validation import StratifiedShuffleSplit\nfrom sklearn.preprocessing import Binarizer\nfrom sklearn.tree import DecisionTreeClassifier\n\n# NOTE: Make sure that the class is labeled 'class' in the data file\ntpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')\ntraining_indices, testing_indices = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))\n\n# Use Scikit-learn's Binarizer to scale the features\ntraining_features = tpot_data.loc[training_indices].drop('class', axis=1)\nresult1 = tpot_data.copy()\n\nif len(training_features.columns.values) > 0:\n    scaler = Binarizer(threshold=0.7)\n    scaler.fit(training_features.values.astype(np.float64))\n    scaled_features = scaler.transform(result1.drop('class', axis=1).values.astype(np.float64))\n    result1 = pd.DataFrame(data=scaled_features)\n    result1['class'] = tpot_data['class'].values\n\n# Perform classification with a decision tree classifier\nresult2 = result1.copy()\n\ndtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)\ndtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)\n\nresult2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)",
+            "title": "Example Exported Code"
+        },
+        {
             "location": "/documentation/pipeline_operators/preprocessing/PolynomialFeatures/",
             "text": "Polynomial Features\n\n\n\n\nUses Scikit-learn's PolynomialFeatures to construct new degree-2 polynomial features from the existing feature set.\n\n\nDependencies\n\n\nsklearn.preprocessing.PolynomialFeatures\n\n\n\nParameters\n\n\ninput_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}\n    Input DataFrame to scale\n\n\n\nReturns\n\n\nmodified_df: pandas.DataFrame {n_samples, n_constructed_features + ['guess', 'group', 'class']}\n    Returns a DataFrame containing the constructed features\n\n\n\nExample Exported Code\n\n\nimport numpy as np\nimport pandas as pd\nfrom sklearn.cross_validation import StratifiedShuffleSplit\nfrom sklearn.preprocessing import PolynomialFeatures\nfrom sklearn.tree import DecisionTreeClassifier\n\n# NOTE: Make sure that the class is labeled 'class' in the data file\ntpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')\ntraining_indices, testing_indices = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))\n\n# Use Scikit-learn's PolynomialFeatures to construct new features from the existing feature set\ntraining_features = tpot_data.loc[training_indices].drop('class', axis=1)\n\nif len(training_features.columns.values) > 0 and len(training_features.columns.values) <= 700:\n    # The feature constructor must be fit on only the training data\n    poly = PolynomialFeatures(degree=2, include_bias=False)\n    poly.fit(training_features.values.astype(np.float64))\n    constructed_features = poly.transform(tpot_data.drop('class', axis=1).values.astype(np.float64))\n\n    tpot_data_classes = tpot_data['class'].values\n    result1 = pd.DataFrame(data=constructed_features)\n    result1['class'] = tpot_data_classes\nelse:\n    result1 = tpot_data.copy()\n\n# Perform classification with a decision tree classifier\nresult2 = result1.copy()\n\ndtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)\ndtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)\n\nresult2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)",
             "title": "PolynomialFeatures"

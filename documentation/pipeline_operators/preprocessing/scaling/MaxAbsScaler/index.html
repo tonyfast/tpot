@@ -8,30 +8,30 @@
   
   <meta name="author" content="Randal S. Olson">
   
-  <title>XGBClassifier - TPOT</title>
+  <title>MaxAbsScaler - TPOT</title>
   
 
-  <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+  <link rel="shortcut icon" href="../../../../../img/favicon.ico">
 
   
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../../../../../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../css/highlight.css">
+  <link rel="stylesheet" href="../../../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../css/highlight.css">
 
   
   <script>
     // Current page data
-    var mkdocs_page_name = "XGBClassifier";
-    var mkdocs_page_input_path = "documentation/pipeline_operators/models/classifiers/ensemble/XGBClassifier.md";
-    var mkdocs_page_url = "/documentation/pipeline_operators/models/classifiers/ensemble/XGBClassifier/";
+    var mkdocs_page_name = "MaxAbsScaler";
+    var mkdocs_page_input_path = "documentation/pipeline_operators/preprocessing/scaling/MaxAbsScaler.md";
+    var mkdocs_page_url = "/documentation/pipeline_operators/preprocessing/scaling/MaxAbsScaler/";
   </script>
   
-  <script src="../../../../../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../../../../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../../../../../js/highlight.pack.js"></script>
-  <script src="../../../../../../js/theme.js"></script> 
+  <script src="../../../../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../../../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../../../../js/highlight.pack.js"></script>
+  <script src="../../../../../js/theme.js"></script> 
 
   
 </head>
@@ -43,9 +43,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../../../../../.." class="icon icon-home"> TPOT</a>
+        <a href="../../../../.." class="icon icon-home"> TPOT</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
@@ -56,21 +56,21 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../..">Home</a>
+        <a class="" href="../../../../..">Home</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../../installing/">Installation</a>
+        <a class="" href="../../../../../installing/">Installation</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../../using/">Using TPOT</a>
+        <a class="" href="../../../../../using/">Using TPOT</a>
         
     </li>
 <li>
@@ -82,28 +82,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../../examples/MNIST_Example/">MNIST Example</a>
+        <a class="" href="../../../../../examples/MNIST_Example/">MNIST Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../../examples/IRIS_Example/">IRIS Example</a>
+        <a class="" href="../../../../../examples/IRIS_Example/">IRIS Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../../examples/Titanic_Kaggle_Example/">Titanic Kaggle Example</a>
+        <a class="" href="../../../../../examples/Titanic_Kaggle_Example/">Titanic Kaggle Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../../examples/Custom_Scoring_Functions/">Custom Scoring Functions</a>
+        <a class="" href="../../../../../examples/Custom_Scoring_Functions/">Custom Scoring Functions</a>
         
     </li>
 
@@ -118,14 +118,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../">Index</a>
+        <a class="" href="../../../../">Index</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../TPOT/">TPOT Object</a>
+        <a class="" href="../../../../TPOT/">TPOT Object</a>
         
     </li>
 
@@ -142,25 +142,82 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tree/DecisionTreeClassifier/">DecisionTreeClassifier</a>
+        <a class="" href="../../../models/classifiers/tree/DecisionTreeClassifier/">DecisionTreeClassifier</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../RandomForestClassifier/">RandomForestClassifier</a>
+        <a class="" href="../../../models/classifiers/ensemble/RandomForestClassifier/">RandomForestClassifier</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../models/classifiers/ensemble/XGBClassifier/">XGBClassifier</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../models/classifiers/svm/SVC/">SVC</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../models/classifiers/nearest_neighbors/kNeighborsClassifier/">kNeighborsClassifier</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../models/classifiers/linear_model/LogisticRegression/">LogisticRegression</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>Pre-Processing</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../StandardScaler/">StandardScaler</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../RobustScaler/">RobustScaler</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../MinMaxScaler/">MinMaxScaler</a>
         
     </li>
 
         
             
     <li class="toctree-l1 current">
-        <a class="current" href="./">XGBClassifier</a>
+        <a class="current" href="./">MaxAbsScaler</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#xgboost-classifier">XGBoost Classifier</a></li>
+                <li class="toctree-l3"><a href="#maxabs-feature-scaler">MaxAbs Feature Scaler</a></li>
                 
                     <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
                 
@@ -178,71 +235,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../svm/SVC/">SVC</a>
+        <a class="" href="../Binarizer/">Binarizer</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../nearest_neighbors/kNeighborsClassifier/">kNeighborsClassifier</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../linear_model/LogisticRegression/">LogisticRegression</a>
-        
-    </li>
-
-        
-    </ul>
-
-        
-            
-    <ul class="subnav">
-    <li><span>Pre-Processing</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../../../preprocessing/scaling/StandardScaler/">StandardScaler</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../../../preprocessing/scaling/RobustScaler/">RobustScaler</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../../../preprocessing/scaling/MinMaxScaler/">MinMaxScaler</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../../../preprocessing/scaling/MaxAbsScaler/">MaxAbsScaler</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../../../preprocessing/scaling/Binarizer/">Binarizer</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../../../preprocessing/PolynomialFeatures/">PolynomialFeatures</a>
+        <a class="" href="../../PolynomialFeatures/">PolynomialFeatures</a>
         
     </li>
 
@@ -257,28 +257,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../feature_selection/VarianceThreshold/">VarianceThreshold</a>
+        <a class="" href="../../../feature_selection/VarianceThreshold/">VarianceThreshold</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../feature_selection/SelectKBest/">SelectKBest</a>
+        <a class="" href="../../../feature_selection/SelectKBest/">SelectKBest</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../feature_selection/SelectPercentile/">SelectPercentile</a>
+        <a class="" href="../../../feature_selection/SelectPercentile/">SelectPercentile</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../feature_selection/RFE/">RFE</a>
+        <a class="" href="../../../feature_selection/RFE/">RFE</a>
         
     </li>
 
@@ -293,7 +293,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../decomposition/RandomizedPCA/">RandomizedPCA</a>
+        <a class="" href="../../../decomposition/RandomizedPCA/">RandomizedPCA</a>
         
     </li>
 
@@ -306,7 +306,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../../../../../contributing/">Contributing</a>
+        <a class="" href="../../../../../contributing/">Contributing</a>
         
     </li>
 
@@ -324,7 +324,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../..">TPOT</a>
+        <a href="../../../../..">TPOT</a>
       </nav>
 
       
@@ -332,7 +332,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../../../..">Docs</a> &raquo;</li>
+    <li><a href="../../../../..">Docs</a> &raquo;</li>
     
       
         
@@ -340,11 +340,11 @@
         
       
         
-          <li>Models &raquo;</li>
+          <li>Pre-Processing &raquo;</li>
         
       
     
-    <li>XGBClassifier</li>
+    <li>MaxAbsScaler</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -358,44 +358,49 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="xgboost-classifier">XGBoost Classifier</h1>
+                <h1 id="maxabs-feature-scaler">MaxAbs Feature Scaler</h1>
 <hr />
-<p>Fits the dmlc eXtreme gradient boosting classifier.</p>
+<p>Uses Scikit-learn's MaxAbsScaler to transform all of the features by scaling them to [0, 1] relative to the feature's maximum value</p>
 <h2 id="dependencies">Dependencies</h2>
-<pre><code>xgboost.XGBClassifier
+<pre><code>sklearn.preprocessing.MaxAbsScaler
 </code></pre>
 <h2 id="parameters">Parameters</h2>
 <pre><code>input_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}
-    Input DataFrame for fitting the XGBoost classifier
-learning_rate: float
-    Shrinks the contribution of each tree by learning_rate
-n_estimators: int
-    The number of boosting stages to perform
-max_depth: int
-    Maximum depth of the individual estimators; the maximum depth limits the number of nodes in the tree
+    Input DataFrame to scale
 </code></pre>
 <h2 id="returns">Returns</h2>
-<pre><code>input_df: pandas.DataFrame {n_samples, n_features+['guess', 'group', 'class', 'SyntheticFeature']}
-    Returns a modified input DataFrame with the guess column updated according to the classifier's predictions.
-    Also adds the classifiers's predictions as a 'SyntheticFeature' column.
+<pre><code>scaled_df: pandas.DataFrame {n_samples, n_features + ['guess', 'group', 'class']}
+    Returns a DataFrame containing the scaled features
 </code></pre>
 <h2 id="example-exported-code">Example Exported Code</h2>
 <pre><code class="Python">import numpy as np
 import pandas as pd
 from sklearn.cross_validation import StratifiedShuffleSplit
-from xgboost import XGBClassifier
+from sklearn.preprocessing import MaxAbsScaler
+from sklearn.tree import DecisionTreeClassifier
 
 # NOTE: Make sure that the class is labeled 'class' in the data file
 tpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')
 training_indices, testing_indices = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))
 
+# Use Scikit-learn's MaxAbsScaler to scale the features
+training_features = tpot_data.loc[training_indices].drop('class', axis=1)
 result1 = tpot_data.copy()
 
-# Perform classification with a gradient boosting classifier
-xgbc1 = XGBClassifier(learning_rate=0.0001, n_estimators=1, max_depth=None)
-xgbc1.fit(result1.loc[training_indices].drop('class', axis=1).values, result1.loc[training_indices, 'class'].values)
+if len(training_features.columns.values) &gt; 0:
+    scaler = MaxAbsScaler()
+    scaler.fit(training_features.values.astype(np.float64))
+    scaled_features = scaler.transform(result1.drop('class', axis=1).values.astype(np.float64))
+    result1 = pd.DataFrame(data=scaled_features)
+    result1['class'] = tpot_data['class'].values
 
-result1['xgbc1-classification'] = xgbc1.predict(result1.drop('class', axis=1).values)
+# Perform classification with a decision tree classifier
+result2 = result1.copy()
+
+dtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)
+dtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)
+
+result2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)
 
 </code></pre>
               
@@ -405,10 +410,10 @@ result1['xgbc1-classification'] = xgbc1.predict(result1.drop('class', axis=1).va
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../svm/SVC/" class="btn btn-neutral float-right" title="SVC">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Binarizer/" class="btn btn-neutral float-right" title="Binarizer">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../RandomForestClassifier/" class="btn btn-neutral" title="RandomForestClassifier"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../MinMaxScaler/" class="btn btn-neutral" title="MinMaxScaler"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -438,10 +443,10 @@ result1['xgbc1-classification'] = xgbc1.predict(result1.drop('class', axis=1).va
           <a href="https://github.com/rhiever/tpot" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../RandomForestClassifier/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../MinMaxScaler/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../svm/SVC/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Binarizer/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
