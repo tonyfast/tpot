@@ -348,19 +348,16 @@
               
                 <h2 id="tpot">TPOT</h2>
 <hr />
-<p><strong>tpot.fit(self, features, classes, feature_names=None)</strong></p>
+<p><strong>tpot.fit(self, features, classes)</strong></p>
 <p>Uses genetic programming to optimize a Machine Learning pipeline that
    maximizes classification accuracy on the provided <code>features</code> and <code>classes</code>.
-   Optionally, name the features in the data frame according to <code>feature_names</code>.
-   Performs a stratified training/testing cross-validaton split to avoid
+   Performs an internal stratified training/testing cross-validaton split to avoid
    overfitting on the provided data.</p>
 <p><em>Parameters</em></p>
 <pre><code>features: array-like {n_samples, n_features}
     Feature matrix
 classes: array-like {n_samples}
     List of class labels for prediction
-feature_names: array-like {n_features} (default: None)
-    List of feature names as strings
 </code></pre>
 <p><em>Returns</em></p>
 <pre><code>None
