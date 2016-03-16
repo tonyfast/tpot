@@ -366,12 +366,12 @@ tpot.export('tpot_mnist_pipeline.py')
 <pre><code class="python">import numpy as np
 import pandas as pd
 
-from sklearn.cross_validation import StratifiedShuffleSplit
+from sklearn.cross_validation import train_test_split
 from sklearn.linear_model import LogisticRegression
 
 # NOTE: Make sure that the class is labeled 'class' in the data file
 tpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')
-training_indeces, testing_indeces = next(iter(StratifiedShuffleSplit(tpot_data['class'].values, n_iter=1, train_size=0.75, test_size=0.25)))
+training_indices, testing_indices = train_test_split(tpot_data.index, stratify = tpot_data['class'].values, train_size=0.75, test_size=0.25)
 
 result1 = tpot_data.copy()
 
@@ -400,7 +400,7 @@ result1['lrc1-classification'] = lrc1.predict(result1.drop('class', axis=1).valu
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>Copyright &copy; 2016 <a href="http://www.randalolson.com">Randal Olson</a></p>
+      <p>Copyright &copy; 2016-Present <a href="http://www.randalolson.com">Randal S. Olson</a></p>
     
   </div>
 
