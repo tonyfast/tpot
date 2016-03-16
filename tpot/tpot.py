@@ -45,7 +45,7 @@ from update_checker import update_check
 
 from ._version import __version__
 from .export_utils import *
-from .seed_pipelines import random_seed_individual
+from .seed_pipelines import pipeline_seeds
 
 import deap
 from deap import algorithms
@@ -162,7 +162,7 @@ class TPOT(object):
 
         self._toolbox = base.Toolbox()
         self._toolbox.register('expr', gp.genHalfAndHalf, pset=self._pset, min_=1, max_=3)
-        self._toolbox.register('seed_individual', gp.PrimitiveTree.from_string, random_seed_individual(), pset=self._pset)
+        self._toolbox.register('seed_individual', gp.PrimitiveTree.from_string, self._random_seed_individual(), pset=self._pset)
         self._toolbox.register('individual', tools.initIterate, creator.Individual, self._toolbox.seed_individual)
         self._toolbox.register('population', tools.initRepeat, list, self._toolbox.individual)
         self._toolbox.register('compile', gp.compile, pset=self._pset)
@@ -1184,6 +1184,21 @@ class TPOT(object):
         balanced_accuracy = np.mean(all_class_accuracies)
 
         return balanced_accuracy
+        
+    def _random_seed_individual(self):
+        """Randomly selects one of the seed pipelines
+        
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        seed_pipeline: array-like
+            Returns a randomly-selected pipeline from the seed group
+        
+        """
+        return pipeline_seeds[random.randint(0, len(pipeline_seeds) - 1)]
 
     def _combined_selection_operator(self, individuals, k):
         """Perform NSGA2 selection on the population according to their Pareto fitness
