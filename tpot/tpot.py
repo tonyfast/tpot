@@ -45,6 +45,7 @@ from update_checker import update_check
 
 from ._version import __version__
 from .export_utils import *
+from .seed_pipelines import random_seed_individual
 
 import deap
 from deap import algorithms
@@ -161,7 +162,8 @@ class TPOT(object):
 
         self._toolbox = base.Toolbox()
         self._toolbox.register('expr', gp.genHalfAndHalf, pset=self._pset, min_=1, max_=3)
-        self._toolbox.register('individual', tools.initIterate, creator.Individual, self._toolbox.expr)
+        self._toolbox.register('seed_individual', gp.PrimitiveTree.from_string, random_seed_individual(), pset=self._pset)
+        self._toolbox.register('individual', tools.initIterate, creator.Individual, self._toolbox.seed_individual)
         self._toolbox.register('population', tools.initRepeat, list, self._toolbox.individual)
         self._toolbox.register('compile', gp.compile, pset=self._pset)
         self._toolbox.register('select', self._combined_selection_operator)
