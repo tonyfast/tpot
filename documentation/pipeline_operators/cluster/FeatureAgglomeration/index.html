@@ -8,7 +8,7 @@
   
   <meta name="author" content="Randal S. Olson">
   
-  <title>RFE - TPOT</title>
+  <title>FeatureAgglomeration - TPOT</title>
   
 
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "RFE";
-    var mkdocs_page_input_path = "documentation/pipeline_operators/feature_selection/RFE.md";
-    var mkdocs_page_url = "/documentation/pipeline_operators/feature_selection/RFE/";
+    var mkdocs_page_name = "FeatureAgglomeration";
+    var mkdocs_page_input_path = "documentation/pipeline_operators/cluster/FeatureAgglomeration.md";
+    var mkdocs_page_url = "/documentation/pipeline_operators/cluster/FeatureAgglomeration/";
   </script>
   
   <script src="../../../../js/jquery-2.1.1.min.js"></script>
@@ -249,43 +249,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../VarianceThreshold/">VarianceThreshold</a>
+        <a class="" href="../../feature_selection/VarianceThreshold/">VarianceThreshold</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../SelectKBest/">SelectKBest</a>
+        <a class="" href="../../feature_selection/SelectKBest/">SelectKBest</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../SelectPercentile/">SelectPercentile</a>
+        <a class="" href="../../feature_selection/SelectPercentile/">SelectPercentile</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">RFE</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#recursive-feature-elimination">Recursive Feature Elimination</a></li>
-                
-                    <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
-                
-                    <li><a class="toctree-l4" href="#parameters">Parameters</a></li>
-                
-                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
-                
-                    <li><a class="toctree-l4" href="#example-exported-code">Example Exported Code</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../../feature_selection/RFE/">RFE</a>
         
     </li>
 
@@ -343,8 +328,23 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../../cluster/FeatureAgglomeration/">FeatureAgglomeration</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">FeatureAgglomeration</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#agglomerate-features">Agglomerate Features</a></li>
+                
+                    <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
+                
+                    <li><a class="toctree-l4" href="#parameters">Parameters</a></li>
+                
+                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
+                
+                    <li><a class="toctree-l4" href="#example-exported-code">Example Exported Code</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -391,11 +391,11 @@
         
       
         
-          <li>Feature Selection &raquo;</li>
+          <li>Cluster &raquo;</li>
         
       
     
-    <li>RFE</li>
+    <li>FeatureAgglomeration</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -409,59 +409,63 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="recursive-feature-elimination">Recursive Feature Elimination</h1>
+                <h1 id="agglomerate-features">Agglomerate Features</h1>
 <hr />
-<p>Uses Scikit-learn's Recursive Feature Elimintation to learn the subset of features that have the highest weights according to the estimator.</p>
+<p>Uses Scikit-learn's FeatureAgglomeration to transform the feature set.</p>
 <h2 id="dependencies">Dependencies</h2>
-<pre><code>sklearn.feature_selection.RFE
-sklearn.svm.SVC
+<pre><code>sklearn.cluster.FeatureAgglomeration
 </code></pre>
 <h2 id="parameters">Parameters</h2>
 <pre><code>input_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}
-    Input DataFrame to perform feature selection on
-num_features: int
-    The number of features to select
-step: float
-    The percentage of features to drop each iteration
+    Input DataFrame to scale
+n_clusters: int
+    The number of clusters to find.
+affinity: int
+    Metric used to compute the linkage. Can be "euclidean", "l1", "l2",
+    "manhattan", "cosine", or "precomputed". If linkage is "ward", only
+    "euclidean" is accepted.
+    Input integer is used to select one of the above strings.
+linkage: int
+    Can be one of the following values:
+        "ward", "complete", "average"
+    Input integer is used to select one of the above strings.
 </code></pre>
 <h2 id="returns">Returns</h2>
-<pre><code>subsetted_df: pandas.DataFrame {n_samples, n_filtered_features + ['guess', 'group', 'class']}
-    Returns a DataFrame containing the `num_features` best features
+<pre><code>modified_df: pandas.DataFrame {n_samples, n_components + ['guess', 'group', 'class']}
+    Returns a DataFrame containing the transformed features
 </code></pre>
 <h2 id="example-exported-code">Example Exported Code</h2>
 <pre><code class="Python">import numpy as np
 import pandas as pd
-from sklearn.cross_validation import train_test_split
-from sklearn.feature_selection import RFE
-from sklearn.svm import SVC
+
+from sklearn.cluster import FeatureAgglomeration
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.cross_validation import train_test_split
 
 # NOTE: Make sure that the class is labeled 'class' in the data file
 tpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')
-training_indices, testing_indices = train_test_split(tpot_data.index, stratify=tpot_data['class'].values, train_size=0.75, test_size=0.25)
+training_indices, testing_indices = train_test_split(tpot_data.index, stratify = tpot_data['class'].values, train_size=0.75, test_size=0.25)
 
+result1 = tpot_data.copy()
 
+# Use Scikit-learn's FeatureAgglomeration to transform the feature set
+training_features = result1.loc[training_indices].drop('class', axis=1)
 
-# Use Scikit-learn's Recursive Feature Elimination (RFE) for feature selection
-training_features = tpot_data.loc[training_indices].drop('class', axis=1)
-training_class_vals = tpot_data.loc[training_indices, 'class'].values
-
-if len(training_features.columns.values) == 0:
-    result1 = tpot_data.copy()
+if len(training_features.columns.values) &gt; 0:
+    # FeatureAgglomeration must be fit on only the training data
+    fa = FeatureAgglomeration(n_clusters=51, affinity='euclidean', linkage='complete')
+    fa.fit(training_features.values.astype(np.float64))
+    transformed_features = fa.transform(result1.drop('class', axis=1).values.astype(np.float64))
+    result1 = pd.DataFrame(data=transformed_features)
+    result1['class'] = result1['class'].values
 else:
-    selector = RFE(SVC(kernel='linear'), n_features_to_select=1, step=0.99)
-    selector.fit(training_features.values, training_class_vals)
-    mask = selector.get_support(True)
-    mask_cols = list(training_features.iloc[:, mask].columns) + ['class']
-    result1 = tpot_data[mask_cols]
+    result1 = result1.copy()
 
 # Perform classification with a decision tree classifier
+dtc2 = DecisionTreeClassifier(max_features=min(145, len(result1.columns) - 1), max_depth=2835)
+dtc2.fit(result1.loc[training_indices].drop('class', axis=1).values, result1.loc[training_indices, 'class'].values)
 result2 = result1.copy()
-
-dtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)
-dtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)
-
-result2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)
+result2['dtc2-classification'] = dtc2.predict(result2.drop('class', axis=1).values)
 
 </code></pre>
               
@@ -471,10 +475,10 @@ result2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).valu
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../decomposition/RandomizedPCA/" class="btn btn-neutral float-right" title="RandomizedPCA">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../../../contributing/" class="btn btn-neutral float-right" title="Contributing">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../SelectPercentile/" class="btn btn-neutral" title="SelectPercentile"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../kernel_approximation/Nystroem/" class="btn btn-neutral" title="Nystroem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -504,10 +508,10 @@ result2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).valu
           <a href="https://github.com/rhiever/tpot" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../SelectPercentile/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../kernel_approximation/Nystroem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../decomposition/RandomizedPCA/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../../../contributing/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

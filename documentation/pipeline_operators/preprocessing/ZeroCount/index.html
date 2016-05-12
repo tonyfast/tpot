@@ -8,7 +8,7 @@
   
   <meta name="author" content="Randal S. Olson">
   
-  <title>RFE - TPOT</title>
+  <title>ZeroCount - TPOT</title>
   
 
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "RFE";
-    var mkdocs_page_input_path = "documentation/pipeline_operators/feature_selection/RFE.md";
-    var mkdocs_page_url = "/documentation/pipeline_operators/feature_selection/RFE/";
+    var mkdocs_page_name = "ZeroCount";
+    var mkdocs_page_input_path = "documentation/pipeline_operators/preprocessing/ZeroCount.md";
+    var mkdocs_page_url = "/documentation/pipeline_operators/preprocessing/ZeroCount/";
   </script>
   
   <script src="../../../../js/jquery-2.1.1.min.js"></script>
@@ -192,49 +192,62 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../preprocessing/scaling/StandardScaler/">StandardScaler</a>
+        <a class="" href="../scaling/StandardScaler/">StandardScaler</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../preprocessing/scaling/RobustScaler/">RobustScaler</a>
+        <a class="" href="../scaling/RobustScaler/">RobustScaler</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../preprocessing/scaling/MinMaxScaler/">MinMaxScaler</a>
+        <a class="" href="../scaling/MinMaxScaler/">MinMaxScaler</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../preprocessing/scaling/MaxAbsScaler/">MaxAbsScaler</a>
+        <a class="" href="../scaling/MaxAbsScaler/">MaxAbsScaler</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../preprocessing/scaling/Binarizer/">Binarizer</a>
+        <a class="" href="../scaling/Binarizer/">Binarizer</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../preprocessing/PolynomialFeatures/">PolynomialFeatures</a>
+        <a class="" href="../PolynomialFeatures/">PolynomialFeatures</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../../preprocessing/ZeroCount/">ZeroCount</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">ZeroCount</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#count-of-zero-elements">Count of Zero elements</a></li>
+                
+                    <li><a class="toctree-l4" href="#parameters">Parameters</a></li>
+                
+                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
+                
+                    <li><a class="toctree-l4" href="#example-exported-code">Example Exported Code</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -249,43 +262,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../VarianceThreshold/">VarianceThreshold</a>
+        <a class="" href="../../feature_selection/VarianceThreshold/">VarianceThreshold</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../SelectKBest/">SelectKBest</a>
+        <a class="" href="../../feature_selection/SelectKBest/">SelectKBest</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../SelectPercentile/">SelectPercentile</a>
+        <a class="" href="../../feature_selection/SelectPercentile/">SelectPercentile</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">RFE</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#recursive-feature-elimination">Recursive Feature Elimination</a></li>
-                
-                    <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
-                
-                    <li><a class="toctree-l4" href="#parameters">Parameters</a></li>
-                
-                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
-                
-                    <li><a class="toctree-l4" href="#example-exported-code">Example Exported Code</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../../feature_selection/RFE/">RFE</a>
         
     </li>
 
@@ -391,11 +389,11 @@
         
       
         
-          <li>Feature Selection &raquo;</li>
+          <li>Pre-Processing &raquo;</li>
         
       
     
-    <li>RFE</li>
+    <li>ZeroCount</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -409,60 +407,56 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="recursive-feature-elimination">Recursive Feature Elimination</h1>
+                <h1 id="count-of-zero-elements">Count of Zero elements</h1>
 <hr />
-<p>Uses Scikit-learn's Recursive Feature Elimintation to learn the subset of features that have the highest weights according to the estimator.</p>
-<h2 id="dependencies">Dependencies</h2>
-<pre><code>sklearn.feature_selection.RFE
-sklearn.svm.SVC
-</code></pre>
+<p>Counts number of elements per row that are equal to zero, and adds the count as
+a feature. Also adds a feature for the count of non-zero elements.</p>
 <h2 id="parameters">Parameters</h2>
 <pre><code>input_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}
-    Input DataFrame to perform feature selection on
-num_features: int
-    The number of features to select
-step: float
-    The percentage of features to drop each iteration
+    Input DataFrame to scale
 </code></pre>
 <h2 id="returns">Returns</h2>
-<pre><code>subsetted_df: pandas.DataFrame {n_samples, n_filtered_features + ['guess', 'group', 'class']}
-    Returns a DataFrame containing the `num_features` best features
+<pre><code>modified_df: pandas.DataFrame {n_samples, n_constructed_features + ['guess', 'group', 'class']}
+    Returns a DataFrame containing new 'non_zero' and 'zero_col' features.
 </code></pre>
 <h2 id="example-exported-code">Example Exported Code</h2>
 <pre><code class="Python">import numpy as np
 import pandas as pd
+
 from sklearn.cross_validation import train_test_split
-from sklearn.feature_selection import RFE
-from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
 
 # NOTE: Make sure that the class is labeled 'class' in the data file
-tpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')
-training_indices, testing_indices = train_test_split(tpot_data.index, stratify=tpot_data['class'].values, train_size=0.75, test_size=0.25)
+tpot_data = pd.read_csv('iris.csv', sep=',')
+training_indices, testing_indices = train_test_split(tpot_data.index, stratify = tpot_data['class'].values, train_size=0.75, test_size=0.25)
 
+result1 = tpot_data.copy()
 
+# Perform classification with a k-nearest neighbor classifier
+knnc1 = KNeighborsClassifier(n_neighbors=min(10, len(training_indices)))
+knnc1.fit(result1.loc[training_indices].drop('class', axis=1).values, result1.loc[training_indices, 'class'].values)
+result1['knnc1-classification'] = knnc1.predict(result1.drop('class', axis=1).values)
 
-# Use Scikit-learn's Recursive Feature Elimination (RFE) for feature selection
-training_features = tpot_data.loc[training_indices].drop('class', axis=1)
-training_class_vals = tpot_data.loc[training_indices, 'class'].values
+# Add virtual features for number of zeros and non-zeros per row
+feature_cols_only = result1.loc[training_indices].drop('class', axis=1)
 
-if len(training_features.columns.values) == 0:
-    result1 = tpot_data.copy()
+if len(feature_cols_only.columns.values) &gt; 0:
+    non_zero_col = np.array([np.count_nonzero(row) for i, row in result1.iterrows()]).astype(np.float64)
+    zero_col     = np.array([(len(feature_cols_only.columns.values) - x) for x in non_zero_col]).astype(np.float64)
+
+    result2 = result1.copy()
+    result2['non_zero'] = pd.Series(non_zero_col, index=result2.index)
+    result2['zero_col'] = pd.Series(zero_col, index=result2.index)
+    result2['class'] = result1['class'].values
 else:
-    selector = RFE(SVC(kernel='linear'), n_features_to_select=1, step=0.99)
-    selector.fit(training_features.values, training_class_vals)
-    mask = selector.get_support(True)
-    mask_cols = list(training_features.iloc[:, mask].columns) + ['class']
-    result1 = tpot_data[mask_cols]
+    result2 = result1.copy()
 
 # Perform classification with a decision tree classifier
-result2 = result1.copy()
-
-dtc1 = DecisionTreeClassifier(max_features='auto', max_depth=None)
-dtc1.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)
-
-result2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).values)
-
+dtc3 = DecisionTreeClassifier(max_features=min(1198, len(result2.columns) - 1), max_depth=93)
+dtc3.fit(result2.loc[training_indices].drop('class', axis=1).values, result2.loc[training_indices, 'class'].values)
+result3 = result2.copy()
+result3['dtc3-classification'] = dtc3.predict(result3.drop('class', axis=1).values)
 </code></pre>
               
             </div>
@@ -471,10 +465,10 @@ result2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).valu
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../decomposition/RandomizedPCA/" class="btn btn-neutral float-right" title="RandomizedPCA">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../feature_selection/VarianceThreshold/" class="btn btn-neutral float-right" title="VarianceThreshold">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../SelectPercentile/" class="btn btn-neutral" title="SelectPercentile"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../PolynomialFeatures/" class="btn btn-neutral" title="PolynomialFeatures"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -504,10 +498,10 @@ result2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).valu
           <a href="https://github.com/rhiever/tpot" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../SelectPercentile/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../PolynomialFeatures/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../decomposition/RandomizedPCA/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../feature_selection/VarianceThreshold/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

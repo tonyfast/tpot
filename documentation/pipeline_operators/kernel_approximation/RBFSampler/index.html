@@ -8,7 +8,7 @@
   
   <meta name="author" content="Randal S. Olson">
   
-  <title>RFE - TPOT</title>
+  <title>RBFSampler - TPOT</title>
   
 
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "RFE";
-    var mkdocs_page_input_path = "documentation/pipeline_operators/feature_selection/RFE.md";
-    var mkdocs_page_url = "/documentation/pipeline_operators/feature_selection/RFE/";
+    var mkdocs_page_name = "RBFSampler";
+    var mkdocs_page_input_path = "documentation/pipeline_operators/kernel_approximation/RBFSampler.md";
+    var mkdocs_page_url = "/documentation/pipeline_operators/kernel_approximation/RBFSampler/";
   </script>
   
   <script src="../../../../js/jquery-2.1.1.min.js"></script>
@@ -249,43 +249,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../VarianceThreshold/">VarianceThreshold</a>
+        <a class="" href="../../feature_selection/VarianceThreshold/">VarianceThreshold</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../SelectKBest/">SelectKBest</a>
+        <a class="" href="../../feature_selection/SelectKBest/">SelectKBest</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../SelectPercentile/">SelectPercentile</a>
+        <a class="" href="../../feature_selection/SelectPercentile/">SelectPercentile</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">RFE</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#recursive-feature-elimination">Recursive Feature Elimination</a></li>
-                
-                    <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
-                
-                    <li><a class="toctree-l4" href="#parameters">Parameters</a></li>
-                
-                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
-                
-                    <li><a class="toctree-l4" href="#example-exported-code">Example Exported Code</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../../feature_selection/RFE/">RFE</a>
         
     </li>
 
@@ -321,15 +306,30 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../../kernel_approximation/RBFSampler/">RBFSampler</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">RBFSampler</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#radial-basis-function-kernel-sampler">Radial Basis Function Kernel Sampler</a></li>
+                
+                    <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
+                
+                    <li><a class="toctree-l4" href="#parameters">Parameters</a></li>
+                
+                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
+                
+                    <li><a class="toctree-l4" href="#example-exported-code">Example Exported Code</a></li>
+                
+            
+            </ul>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../kernel_approximation/Nystroem/">Nystroem</a>
+        <a class="" href="../Nystroem/">Nystroem</a>
         
     </li>
 
@@ -391,11 +391,11 @@
         
       
         
-          <li>Feature Selection &raquo;</li>
+          <li>Kernel Approximation &raquo;</li>
         
       
     
-    <li>RFE</li>
+    <li>RBFSampler</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -409,51 +409,50 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="recursive-feature-elimination">Recursive Feature Elimination</h1>
+                <h1 id="radial-basis-function-kernel-sampler">Radial Basis Function Kernel Sampler</h1>
 <hr />
-<p>Uses Scikit-learn's Recursive Feature Elimintation to learn the subset of features that have the highest weights according to the estimator.</p>
+<p>Uses Scikit-learn's RBFSampler to transform the feature set.</p>
 <h2 id="dependencies">Dependencies</h2>
-<pre><code>sklearn.feature_selection.RFE
-sklearn.svm.SVC
+<pre><code>sklearn.kernel_approximation.RBFSampler
 </code></pre>
 <h2 id="parameters">Parameters</h2>
 <pre><code>input_df: pandas.DataFrame {n_samples, n_features+['class', 'group', 'guess']}
-    Input DataFrame to perform feature selection on
-num_features: int
-    The number of features to select
-step: float
-    The percentage of features to drop each iteration
+    Input DataFrame to scale
+gamma:
+  Parameter of RBF kernel: exp(-gamma * x^2)
+n_components: int
+    The number of components to keep
 </code></pre>
 <h2 id="returns">Returns</h2>
-<pre><code>subsetted_df: pandas.DataFrame {n_samples, n_filtered_features + ['guess', 'group', 'class']}
-    Returns a DataFrame containing the `num_features` best features
+<pre><code>modified_df: pandas.DataFrame {n_samples, n_components + ['guess', 'group', 'class']}
+    Returns a DataFrame containing the transformed features
 </code></pre>
 <h2 id="example-exported-code">Example Exported Code</h2>
 <pre><code class="Python">import numpy as np
 import pandas as pd
+
 from sklearn.cross_validation import train_test_split
-from sklearn.feature_selection import RFE
-from sklearn.svm import SVC
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.kernel_approximation import RBFSampler
 
 # NOTE: Make sure that the class is labeled 'class' in the data file
 tpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR')
 training_indices, testing_indices = train_test_split(tpot_data.index, stratify=tpot_data['class'].values, train_size=0.75, test_size=0.25)
 
 
+result1 = tpot_data.copy()
 
-# Use Scikit-learn's Recursive Feature Elimination (RFE) for feature selection
-training_features = tpot_data.loc[training_indices].drop('class', axis=1)
-training_class_vals = tpot_data.loc[training_indices, 'class'].values
+# Use Scikit-learn's RBFSampler to transform the feature set
+training_features = result1.loc[training_indices].drop('class', axis=1)
 
-if len(training_features.columns.values) == 0:
-    result1 = tpot_data.copy()
+if len(training_features.columns.values) &gt; 0:
+    # RBF must be fit on only the training data
+    rbf = RBFSampler(n_components=min(59, len(training_features.columns.values)), gamma=0.001)
+    rbf.fit(training_features.values.astype(np.float64))
+    transformed_features = rbf.transform(result1.drop('class', axis=1).values.astype(np.float64))
+    result1 = pd.DataFrame(data=transformed_features)
+    result1['class'] = result1['class'].values
 else:
-    selector = RFE(SVC(kernel='linear'), n_features_to_select=1, step=0.99)
-    selector.fit(training_features.values, training_class_vals)
-    mask = selector.get_support(True)
-    mask_cols = list(training_features.iloc[:, mask].columns) + ['class']
-    result1 = tpot_data[mask_cols]
+    result1 = result1.copy()
 
 # Perform classification with a decision tree classifier
 result2 = result1.copy()
@@ -471,10 +470,10 @@ result2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).valu
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../decomposition/RandomizedPCA/" class="btn btn-neutral float-right" title="RandomizedPCA">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Nystroem/" class="btn btn-neutral float-right" title="Nystroem">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../SelectPercentile/" class="btn btn-neutral" title="SelectPercentile"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../decomposition/FastICA/" class="btn btn-neutral" title="FastICA"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -504,10 +503,10 @@ result2['dtc1-classification'] = dtc1.predict(result2.drop('class', axis=1).valu
           <a href="https://github.com/rhiever/tpot" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../SelectPercentile/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../decomposition/FastICA/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../decomposition/RandomizedPCA/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Nystroem/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
