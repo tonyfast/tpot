@@ -42,6 +42,7 @@ from sklearn.decomposition import RandomizedPCA, FastICA
 from sklearn.kernel_approximation import RBFSampler, Nystroem
 from sklearn.naive_bayes import BernoulliNB, GaussianNB, MultinomialNB
 from sklearn.cross_validation import train_test_split
+from sklearn.base import BaseEstimator
 
 import warnings
 from update_checker import update_check
@@ -61,7 +62,7 @@ class Bool(object):
     pass
 
 
-class TPOT(object):
+class TPOT(BaseEstimator):
 
     """TPOT automatically creates and optimizes machine learning pipelines using genetic programming."""
 
